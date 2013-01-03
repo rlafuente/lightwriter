@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+
+# lightwriter.py
+# Script for easy phrase uploading
+#
+# (c) ricardo lafuente 2007
+
+import sys,os
+import string2bin
+
+MAILFILE = 'test-emails.txt'
+# data = sys.argv[1]
+
+os.system('clear')
+print '\n' * 5
+print 'Tell me what you want to lightwrite!'
+print '  (1 to 4 words, please :)'
+print
+print
+data = raw_input(' >> ')
+
+bindata = string2bin.run(data)
+
+os.system('python arduinoserial.py ' + bindata)
+
+mailfile = open(MAILFILE, 'a')
+mailfile.write('%s\n' % data)
+mailfile.close()

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#our current dir
+CURRENT_DIR=`pwd`
+# photo dir
+PHOTO_DIR="./photos/"
+
+cd $PHOTO_DIR
+# get pictures from camera
+gphoto2 --get-all-files && gphoto2 --delete-all-files --recurse
+# order them by date and run impressive
+ls | tac | xargs impressive --scale --cache persistent --transtime 1200 -a 6 --transition Crossfade --wrap --nologo --geometry 800x600
+cd ..

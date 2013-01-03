@@ -1,0 +1,16 @@
+#!/bin/sh
+
+#our current dir
+CURRENT_DIR=`pwd`
+# photo dir
+PHOTO_DIR="./etienne-photos/"
+
+cd $PHOTO_DIR
+# get pictures from camera
+gphoto2 --get-all-files
+# delete them from the camera
+gphoto2 --delete-all-files -f /store_00010001/DCIM/100CANON
+# order them by date and run keyjnote
+ls | sort -r | xargs keyjnote --scale --cache none -a 6 --transtime 1200 --transition Crossfade --wrap --geometry 1024x600
+
+cd ..
